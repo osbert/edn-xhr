@@ -9,9 +9,12 @@
                  [prismatic/dommy "1.0.0"]]
   :plugins [[lein-cljsbuild "1.0.4"]]
   :cljsbuild {:builds {:app {:source-paths ["src/cljs" "target/generated/cljs"]
-                             :compiler {:output-to     "resources/public/js/app.js"
+                             :compiler {:output-to     "resources/public/js/com.iterinc.edn_xhr.js"
                                         :output-dir    "resources/public/js/out"
                                         :asset-path   "js/out"
                                         :optimizations :none
-                                        :pretty-print  true}}}}
-  :clean-targets ^{:protect false} ["resources/public/js"])
+                                        :pretty-print  true}
+                             :jar true}}}
+  :clean-targets ^{:protect false} ["resources/public/js"]
+  :hooks [leiningen.cljsbuild]
+  )
