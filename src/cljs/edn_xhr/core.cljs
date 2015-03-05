@@ -26,7 +26,7 @@
 
 (defn headers-with-csrf
   ([existing-headers]
-   (headers-with-csrf (anti-forgery-token)))
+   (headers-with-csrf existing-headers (anti-forgery-token)))
   ([existing-headers csrf-token]
    (merge existing-headers
           (if csrf-token
@@ -50,5 +50,5 @@
     (let [m (meths method)]
       (. xhr
          (send url m (when data (pr-str data))
-               (headers m))))
+               (headers method))))
     xhr))
