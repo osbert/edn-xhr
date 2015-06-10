@@ -52,3 +52,10 @@
          (send url m (when data (pr-str data))
                (headers method))))
     xhr))
+
+(defn edn-xhr-async
+  "Wrapper around edn-xhr to return a core.async channel with the result."
+  [opts]
+  (let [ch (chan)]
+    (edn-xhr (merge opts {:on-complete #(go (>! ch %))}))
+    ch))
